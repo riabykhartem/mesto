@@ -1,0 +1,10 @@
+.element{
+    max-height: 361px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
