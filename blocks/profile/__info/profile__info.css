@@ -5,7 +5,6 @@
         "describtion .";
     align-content: center;
     max-width: 336px;
-    min-height: 73px;
     grid-column-gap: 18px;
     grid-row-gap: 16px;
 }

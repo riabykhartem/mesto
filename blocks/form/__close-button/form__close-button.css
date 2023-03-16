@@ -1,20 +1,20 @@
 .form__close-button{
     background-image: url('../../../images/CloseIcon.svg');
     border: none;
-    position: relative;
+    position: absolute;
     width: 32px;
     height: 32px;
     background-color: transparent;
-    top: -40px;
-    left: 438px;
+    top: 160px;
+    left: 825px;
 }
 @media screen and (max-width:875px) {
     .form__close-button{
     background-image: url('../../../images/Close-Icon-mobile.svg');
     max-width: 20px;
     max-height: 20px;
-    top: -40px;
-    left: 250px;
+    top: 100px;
+    left: 280px;
 }   
     
 }

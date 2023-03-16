@@ -3,14 +3,12 @@
     flex-direction: column;
     background-color: white;
     width: 430px;
-    min-height: 330px;
-    margin: 195px auto 0 auto;
+    margin: 195px auto 203px auto;
     border-radius: 10px;
 }
 @media screen and (max-width: 875px) {
     .form{
         width: calc(100% - 19px*2);
-        min-height: 322px;
         margin-top: 123px;
     }
     
