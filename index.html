@@ -1,106 +1,170 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./pages/index.css" />
     <title>mesto</title>
-</head>
-<body class="page">
+  </head>
+
+  <body class="page">
     <div class="page__container">
-            <section class="header"><img src="./images/header-logo.svg" alt="лого" class="header__logo"></section>
+      <header class="header">
+        <img src="./images/header-logo.svg" alt="лого" class="header__logo" />
+      </header>
 
-        <main>
-            <section class="profile section">
-                <div class="profile__container">
-                    <img src="./images/Avatar.svg" alt="аватар" class="profile__avatar">
-                    <div class="profile__info">
-                        <h1 class="profile__name">Жак-Ив Кусто</h1>
-                        <p class="profile__description">Исследователь океана</p>
-                        <button type='button' class="button profile__edit-button"></button>
-                    </div>
-                </div>
-                <button type='button' class="button profile__add-button"></button>
-            </section>
+      <main>
+        <section class="profile section">
+          <div class="profile__container">
+            <img
+              src="./images/Avatar.svg"
+              alt="аватар"
+              class="profile__avatar"
+            />
+            <div class="profile__info">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <p class="profile__description">Исследователь океана</p>
+              <button
+                type="button"
+                aria-label="edit"
+                class="button profile__edit-button"
+              ></button>
+            </div>
+          </div>
+          <button
+            type="button"
+            aria-label="add"
+            class="button profile__add-button"
+          ></button>
+        </section>
 
-            <section class="elements section">
-                <ul class="elements__list">
-                    <!-- 1 -->
-                    <li class="element">
-                        <img src="./images/clay-elliot-DLkwX8_B9Ns-unsplash.jpg" alt="" class="element__photo">
-                        <div class="element__footer">
-                            <div class="element__footer-container">
-                                <h2 class="element__name">Карачаевск</h2>
-                                <button type='button' class="button element__like-button"></button>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- 2 -->
-                    <li class="element">
-                        <img src="./images/esaias-tan-6TXtIhu1k4A-unsplash.jpg" alt="" class="element__photo">
-                        <div class="element__footer">
-                            <div class="element__footer-container">
-                                <h2 class="element__name">Гора Эльбрус</h2>
-                                <button type='button' class="button element__like-button"></button>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- 3 -->
-                    <li class="element"><img src="./images/tony-litvyak-T11abC6HUJ8-unsplash.jpg" alt="" class="element__photo">
-                        <div class="element__footer">
-                            <div class="element__footer-container">
-                                <h2 class="element__name">Домбай</h2>
-                                <button type='button' class="button element__like-button"></button>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- 4 -->
-                    <li class="element">
-                        <img src="./images/mohamed-alaau-bRWqvzpmlfo-unsplash.jpg" alt="" class="element__photo">
-                        <div class="element__footer">
-                            <div class="element__footer-container">
-                                <h2 class="element__name">Гора Эльбрус</h2>
-                                <button type='button' class="button element__like-button"></button>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- 5 -->
-                    <li class="element"><img src="./images/nico-baum-jr0GS51wwyE-unsplash.jpg" alt="" class="element__photo">
-                        <div class="element__footer">
-                            <div class="element__footer-container">
-                                <h2 class="element__name">Домбай</h2>
-                                <button type='button' class="button element__like-button"></button>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- 6 -->
-                    <li class="element"><img src="./images/thilak-mohan-f6hE-8JvKLg-unsplash.jpg" alt="" class="element__photo">
-                        <div class="element__footer">
-                            <div class="element__footer-container">
-                                <h2 class="element__name">Карачаево-Ч...</h2>
-                                <button type='button' class="button element__like-button"></button>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </section>
-            <section class="section footer">
-                <p class="footer__capture">© 2020 Mesto Russia</p>
-            </section>
-        </main>
-        <div class="popup">
-            <form class="form">
-                <button type='button' class="button form__close-button"></button>
-                <div class="form__container">
-                    <h2 class="form__title">Редактировать профиль</h2>
-                        <input type="text" placeholder="Жак-Ив Кусто" class="form__input form__input-name">
-                    <input type="text" placeholder="Исследователь океана" class="form__input form__input-description">
-                    <button type="submit" class="button form__save-button">Сохранить</button>
-                </div>
-            </form>
+        <section class="elements section">
+          <ul class="elements__list">
+            <!-- 1 -->
+            <li class="element">
+              <img
+                src="./images/clay-elliot-DLkwX8_B9Ns-unsplash.jpg"
+                alt="река в лесу"
+                class="element__photo"
+              />
+              <div class="element__footer">
+                <h2 class="element__name">Карачаевск</h2>
+                <button
+                  type="button"
+                  aria-label="like"
+                  class="button element__like-button"
+                ></button>
+              </div>
+            </li>
+            <!-- 2 -->
+            <li class="element">
+              <img
+                src="./images/esaias-tan-6TXtIhu1k4A-unsplash.jpg"
+                alt="лесная роща"
+                class="element__photo"
+              />
+              <div class="element__footer">
+                <h2 class="element__name">Гора Эльбрус</h2>
+                <button
+                  type="button"
+                  aria-label="like"
+                  class="button element__like-button"
+                ></button>
+              </div>
+            </li>
+            <!-- 3 -->
+            <li class="element">
+              <img
+                src="./images/tony-litvyak-T11abC6HUJ8-unsplash.jpg"
+                alt="Орёл"
+                class="element__photo"
+              />
+              <div class="element__footer">
+                <h2 class="element__name">Домбай</h2>
+                <button
+                  type="button"
+                  aria-label="like"
+                  class="button element__like-button"
+                ></button>
+              </div>
+            </li>
+            <!-- 4 -->
+            <li class="element">
+              <img
+                src="./images/mohamed-alaau-bRWqvzpmlfo-unsplash.jpg"
+                alt="Пляж"
+                class="element__photo"
+              />
+              <div class="element__footer">
+                <h2 class="element__name">Гора Эльбрус</h2>
+                <button
+                  type="button"
+                  aria-label="like"
+                  class="button element__like-button"
+                ></button>
+              </div>
+            </li>
+            <!-- 5 -->
+            <li class="element">
+              <img
+                src="./images/nico-baum-jr0GS51wwyE-unsplash.jpg"
+                alt="река среди гор"
+                class="element__photo"
+              />
+              <div class="element__footer">
+                <h2 class="element__name">Домбай</h2>
+                <button
+                  type="button"
+                  aria-label="like"
+                  class="button element__like-button"
+                ></button>
+              </div>
+            </li>
+            <!-- 6 -->
+            <li class="element">
+              <img
+                src="./images/thilak-mohan-f6hE-8JvKLg-unsplash.jpg"
+                alt="Морская волна"
+                class="element__photo"
+              />
+              <div class="element__footer">
+                <h2 class="element__name">Карачаево-Ч...</h2>
+                <button
+                  type="button"
+                  aria-label="like"
+                  class="button element__like-button"
+                ></button>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </main>
+      <footer class="section footer">
+        <p class="footer__capture">© 2020 Mesto Russia</p>
+      </footer>
+      <div class="popup">
+        <div class="popup__container">
+          <button type="button" class="button popup__close-button"></button>
+          <form class="form" name="profile" method="post">
+            <h2 class="form__title">Редактировать профиль</h2>
+            <input
+              type="text"
+              name="name"
+              placeholder="Имя"
+              class="form__input form__input_name"
+            />
+            <input
+              type="text"
+              name="description"
+              placeholder="О себе"
+              class="form__input form__input_description"
+            />
+            <button type="submit" class="form__save-button">Сохранить</button>
+          </form>
         </div>
+      </div>
     </div>
     <script src="./scripts/index.js"></script>
-</body>
+  </body>
 </html>

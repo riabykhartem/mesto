@@ -2,3 +2,9 @@
     margin-top: 66px;
     padding: 0;
 }
+@media screen and (max-width: 875px) {
+  .footer{
+    margin-top: 48px;
+  }
+
+}

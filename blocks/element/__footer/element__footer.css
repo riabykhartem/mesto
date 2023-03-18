@@ -1,9 +1,11 @@
 .element__footer{
+  display: inline-flex;
     background-color: #FFFFFF;
     height: 79px;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
     align-items: center;
 }

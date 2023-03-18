@@ -1,15 +1,16 @@
 .form{
-
+    display: flex;
     flex-direction: column;
-    background-color: white;
-    width: 430px;
-    margin: 195px auto 203px auto;
-    border-radius: 10px;
+    max-width: 358px;
+    width: calc(100% - 36px*2);
+    margin: 34px auto 37px auto;
+    
 }
 @media screen and (max-width: 875px) {
     .form{
-        width: calc(100% - 19px*2);
-        margin-top: 123px;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        width: calc(100% - 22px*2);
     }
     
 }
