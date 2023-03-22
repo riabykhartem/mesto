@@ -11,6 +11,7 @@
         text-align: center;
         margin: 0 auto;
         align-items: center;
+        max-width: calc(100% - 19px*2);
     }
 
 }
