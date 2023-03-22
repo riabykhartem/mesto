@@ -12,7 +12,7 @@
     line-height: 100%;
 }
 .form__save-button:hover{
-  transition: opacity 0,3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
   opacity: 0.8;
 
 }

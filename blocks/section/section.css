@@ -1,12 +1,5 @@
 .section{
     box-sizing: border-box;
     width: 100%;
-    margin: 0;
-}
-@media screen and (max-width: 875px) {
-    .section{
-        width: calc(100% - 19px*2);
-        margin-left: auto;
-        margin-right: auto;
-    } 
+    margin: 0 auto;
 }

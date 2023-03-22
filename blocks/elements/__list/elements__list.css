@@ -9,10 +9,18 @@
     padding: 0;
     justify-items: center;
 }
-@media screen and (max-width: 875px) {
+@media screen and (max-width: 940px) {
     .elements__list{
-        grid-template-rows: repeat(6, 1fr);
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3, 1fr);
+
     }
+}
+@media screen and (max-width: 615px) {
+  .elements__list{
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+
+  }
 
 }
