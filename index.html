@@ -1,141 +1,89 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./pages/index.css" />
-    <title>mesto</title>
-  </head>
 
-  <body class="page">
-    <div class="page__container">
-      <header class="header section">
-        <img src="./images/header-logo.svg" alt="лого" class="header__logo" />
-      </header>
+<head>
+  <meta charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <link rel="stylesheet" href="./pages/index.css" >
+  <title>mesto</title>
+</head>
 
-      <main>
-        <section class="profile section">
-          <div class="profile__container">
-            <img
-              src="./images/Avatar.svg"
-              alt="аватар"
-              class="profile__avatar"
-            />
-            <div class="profile__info">
-              <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <p class="profile__description">Исследователь океана</p>
-              <button
-                type="button"
-                aria-label="edit"
-                class="button profile__edit-button"
-              ></button>
-            </div>
+<body class="page">
+  <div class="page__container">
+    <header class="header section">
+      <img src="./images/header-logo.svg" alt="лого" class="header__logo" >
+    </header>
+
+    <main>
+      <section class="profile section">
+        <div class="profile__container">
+          <img src="./images/Avatar.svg" alt="аватар" class="profile__avatar" >
+          <div class="profile__info">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <p class="profile__description">Исследователь океана</p>
+            <button type="button" aria-label="edit" class="button profile__edit-button"></button>
           </div>
-          <button
-            type="button"
-            aria-label="add"
-            class="button profile__add-button"
-          ></button>
-        </section>
-
-        <section class="elements section">
-          <!-- шаблон карточек -->
-          <template class="template">
-            <li class="element">
-              <img src="xxx" alt="" class="element__photo" />
-              <button class="button element__trash-button"></button>
-              <div class="element__footer">
-                <h2 class="element__name"></h2>
-                <button
-                  type="button"
-                  aria-label="like"
-                  class="button element__like-button"
-                ></button>
-              </div>
-            </li>
-          </template>
-
-          <ul class="elements__list">
-            <!-- сюда нужно класть карточки -->
-          </ul>
-        </section>
-      </main>
-      <footer class="footer section">
-        <p class="footer__capture">© 2020 Mesto Russia</p>
-      </footer>
-      <!-- попап профиля -->
-      <div class="popup popup_place_profile">
-        <div class="popup__container">
-          <button
-            type="button"
-            class="button popup__close-button popup__close-button_place_profile"
-          ></button>
-          <form class="form form_place_profile" name="profile" method="post">
-            <h2 class="form__title">Редактировать профиль</h2>
-            <input
-              type="text"
-              name="name"
-              placeholder="Имя"
-              class="form__input form__input_type_name"
-            />
-            <input
-              type="text"
-              name="description"
-              placeholder="О себе"
-              class="form__input form__input_type_description"
-            />
-            <button type="submit" class="form__save-button">Сохранить</button>
-          </form>
         </div>
-      </div>
-      <!-- Попап добавления карточек -->
-      <div class="popup popup_place_add-card">
-        <div class="popup__container">
-          <button
-            type="button"
-            class="button popup__close-button popup__close-button_place_add-button"
-          ></button>
-          <form class="form form_place_add-card" name="addCard" method="post">
-            <h2 class="form__title">Новое место</h2>
-            <input
-              type="text"
-              name="name"
-              placeholder="Название"
-              class="form__input form__input_type_title"
-            />
-            <input
-              type="src"
-              name="url"
-              placeholder="Ссылка на картинку"
-              class="form__input form__input_type_url"
-            />
-            <button
-              type="submit"
-              class="form__save-button form__add-card-button"
-            >
-              создать
-            </button>
-          </form>
-        </div>
-      </div>
-      <!-- попап просмотра фотографий -->
-      <div class="popup popup_place_zoom">
-        <figure class="zoom">
-          <button
-            type="button"
-            class="button popup__close-button popup__close-button_place_zoom"
-          ></button>
-          <img
-            src="undefined"
-            alt="увеличенная фотография красивого вида"
-            class="zoom__image"
-          />
-          <figcaption class="zoom__caption"></figcaption>
-        </figure>
+        <button type="button" aria-label="add" class="button profile__add-button"></button>
+      </section>
+
+      <section class="elements section">
+        <!-- шаблон карточек -->
+        <template class="template">
+          <li class="element">
+            <img src="xxx" alt="" class="element__photo" >
+            <button class="button element__trash-button"></button>
+            <div class="element__footer">
+              <h2 class="element__name"></h2>
+              <button type="button" aria-label="like" class="button element__like-button"></button>
+            </div>
+          </li>
+        </template>
+
+        <ul class="elements__list">
+          <!-- сюда нужно класть карточки -->
+        </ul>
+      </section>
+    </main>
+    <footer class="footer section">
+      <p class="footer__capture">© 2020 Mesto Russia</p>
+    </footer>
+    <!-- попап профиля -->
+    <div class="popup popup_place_profile">
+      <div class="popup__container">
+        <button type="button" class="button popup__close-button popup__close-button_place_profile"></button>
+        <form class="form form_place_profile" name="profile" method="post">
+          <h2 class="form__title">Редактировать профиль</h2>
+          <input type="text" name="name" placeholder="Имя" class="form__input form__input_type_name" >
+          <input type="text" name="description" placeholder="О себе" class="form__input form__input_type_description" >
+          <button type="submit" class="form__save-button">Сохранить</button>
+        </form>
       </div>
     </div>
-    <script src="./scripts/cards.js"></script>
-    <script src="./scripts/index.js"></script>
-  </body>
+    <!-- Попап добавления карточек -->
+    <div class="popup popup_place_add-card">
+      <div class="popup__container">
+        <button type="button" class="button popup__close-button popup__close-button_place_add-button"></button>
+        <form class="form form_place_add-card" name="addCard" method="post">
+          <h2 class="form__title">Новое место</h2>
+          <input type="text" name="name" placeholder="Название" class="form__input form__input_type_title" >
+          <input type="url" name="url" placeholder="Ссылка на картинку" class="form__input form__input_type_url" >
+          <input type="submit" class="form__save-button form__add-card-button" value="Создать" >
+        </form>
+      </div>
+    </div>
+    <!-- попап просмотра фотографий -->
+    <div class="popup popup_place_zoom">
+      <figure class="zoom">
+        <button type="button" class="button popup__close-button popup__close-button_place_zoom"></button>
+        <img src="undefined" alt="увеличенная фотография красивого вида" class="zoom__image">
+        <figcaption class="zoom__caption"></figcaption>
+      </figure>
+    </div>
+  </div>
+  <script src="./scripts/cards.js"></script>
+  <script src="./scripts/index.js"></script>
+</body>
+
 </html>
