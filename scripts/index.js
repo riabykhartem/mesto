@@ -23,13 +23,15 @@ const buttonCloseAddCardPopup = document.querySelector(
 );
 const cardNameInput = document.querySelector(".form__input_type_title");
 const cardLinkInput = document.querySelector(".form__input_type_url");
-const submitCardButton = document.querySelector(".form__add-card-button");
+
 const cardForm = document.querySelector(".form_place_add-card");
 //переменные зума
 const popupZoom = document.querySelector(".popup_place_zoom");
 const closeZoomButton = document.querySelector(
   ".popup__close-button_place_zoom"
 );
+const zoomImage = document.querySelector(".zoom__image");
+const zoomCaption = document.querySelector(".zoom__caption")
 
 const popupList = Array.from(document.querySelectorAll(".popup"));
 const closeByEsc = (evt) => {
@@ -46,40 +48,40 @@ const closeByClickOverlay = (evt) => {
     });
   }
 };
-const submitByEnter = (evt) => {
-  if (evt.key === "Enter") {
-    popupList.forEach(() => {
-      handleFormSubmit();
-    });
-  }
-};
+
 // универсальные функции открытия/закрытия попапов
 function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closeByEsc);
   popup.addEventListener("click", closeByClickOverlay);
-  popup.addEventListener("keydown", submitByEnter);
+  popup.addEventListener("submit", handleFormSubmit);
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", closeByEsc);
   popup.removeEventListener("click", closeByClickOverlay);
-  popup.removeEventListener("keydown", submitByEnter);
+  popup.removeEventListener("submit", handleFormSubmit);
 }
 
 // функции открытия/закрытия попапа профиля
 popupOpenProfileButton.addEventListener("click", function () {
+  const formSaveButton = popupProfile.querySelector('.form__save-button');
+  disableButton(formSaveButton, {inactiveButtonClass: 'form__save-button_inactive'})
   nameInput.value = profileName.textContent;
   descriptionInput.value = profileDescription.textContent;
   openPopup(popupProfile);
 });
-popupCloseProfileButton.addEventListener("click", () =>
-  closePopup(popupProfile)
-);
 //функция открытия попапа добавления карточек
-buttonAddCard.addEventListener("click", () => openPopup(popupAddCard));
-//униерсльная функция закрытия попапов
+
+const submitCardButton = document.querySelector(".form__add-card-button");
+
+buttonAddCard.addEventListener("click", () => {
+  const formSaveButton = popupAddCard.querySelector('.form__save-button');
+  disableButton(formSaveButton, {inactiveButtonClass: 'form__save-button_inactive'})
+  openPopup(popupAddCard)});
+
+  //униерсльная функция закрытия попапов
 document.querySelectorAll(".popup__close-button").forEach((button) => {
   const buttonsPopup = button.closest(".popup"); // нашли родителя с нужным классом
   button.addEventListener("click", () => closePopup(buttonsPopup)); // закрыли попап
@@ -87,12 +89,11 @@ document.querySelectorAll(".popup__close-button").forEach((button) => {
 
 //функция открытия/закртытия попапа просмотра фотографии
 function openZoomPopup(event) {
-  document.querySelector(".zoom__image").src = event.target.src;
-  document.querySelector(".zoom__image").alt = event.target.alt;
-  document.querySelector(".zoom__caption").textContent = event.target.alt;
+  zoomImage.src = event.target.src;
+  zoomImage.alt = event.target.alt;
+  zoomCaption.textContent = event.target.alt;
   openPopup(popupZoom);
 }
-closeZoomButton.addEventListener("click", () => closePopup(popupZoom));
 
 // фукция изменения текстового содержания
 const handleFormSubmit = (evt) => {

@@ -16,7 +16,7 @@ const setFormEventListeners = (formToValidate, {inputSelector, submitButtonSelec
     input.addEventListener('input', () => {
     checkValidity(input, rest)
     if(hasInvalidInput(formInputs)){
-      disableButton(formButton, rest)
+     disableButton(formButton, rest)
     }
     else{
       enableButton(formButton, rest)
