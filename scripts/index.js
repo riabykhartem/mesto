@@ -54,14 +54,12 @@ function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closeByEsc);
   popup.addEventListener("click", closeByClickOverlay);
-  popup.addEventListener("submit", handleFormSubmit);
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", closeByEsc);
   popup.removeEventListener("click", closeByClickOverlay);
-  popup.removeEventListener("submit", handleFormSubmit);
 }
 
 // функции открытия/закрытия попапа профиля
