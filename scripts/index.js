@@ -1,67 +1,77 @@
-import Card from './Card.js';
-import {validationConfig, FormValidator} from './FormValidation.js';
-import {initialCards} from './initialCards.js';
-//переменные для профиля
-const popupProfile = document.querySelector(".popup_place_profile");
-const popupOpenProfileButton = document.querySelector(".profile__edit-button");
-const nameInput = document.querySelector(".form__input_type_name");
-const descriptionInput = document.querySelector(".form__input_type_description");
-const profileForm = document.querySelector(".form_place_profile");
-const profileName = document.querySelector(".profile__name");
-const profileDescription = document.querySelector(".profile__description");
-//переменные для попапа добавления карточек
-const cardsContainer = document.querySelector(".elements__list");
-const popupAddCard = document.querySelector(".popup_place_add-card");
-const buttonAddCard = document.querySelector(".profile__add-button");
-const cardNameInput = document.querySelector(".form__input_type_title");
-const cardLinkInput = document.querySelector(".form__input_type_url");
-//переменные зума
-const popupZoom = document.querySelector(".popup_place_zoom");
-const zoomImage = document.querySelector(".zoom__image");
-const zoomCaption = document.querySelector(".zoom__caption")
+import {
+  validationConfig,
+  popupProfile,
+  popupOpenProfileButton,
+  nameInput,
+  descriptionInput,
+  profileForm,
+  profileName,
+  profileDescription,
+  cardsContainer,
+  popupAddCard,
+  buttonAddCard,
+  cardNameInput,
+  cardLinkInput,
+  popupZoom,
+  zoomImage,
+  zoomCaption,
+  popupList,
+  formAddCard,
+  submitCardButton,
+} from "./constants.js";
+import Card from "./Card.js";
+import { FormValidator } from "./FormValidation.js";
+import { initialCards } from "./initialCards.js";
 
-const popupList = Array.from(document.querySelectorAll(".popup"));
-const formAddCard = document.querySelector(".form_place_add-card");
-const submitCardButton = document.querySelector(".form__add-card-button");
+const addCard = (placeToAdd, thingToAdd) => {
+  placeToAdd.prepend(thingToAdd);
+};
 
 initialCards.forEach((element) => {
-  const card = new Card(element, '.template',() => openZoomPopup(event));
-  const cardElement = card.createCard()
-  cardsContainer.append(cardElement)
+  const card = new Card(element, ".template", () => openZoomPopup(event));
+  const cardElement = card.createCard();
+  addCard(cardsContainer, cardElement);
 });
 
-const closeByClickOverlay = (evt) => {
-  if (evt.currentTarget === evt.target) {
-    popupList.forEach((popup) => {
-      closePopup(popup);
-    });
+const handleCloseByClick = (evt) => {
+  if (
+    evt.target === evt.currentTarget ||
+    evt.target.classList.contains("popup__close-button")
+  ) {
+    closePopup(evt.currentTarget);
   }
 };
+
+popupList.forEach((popup) => {
+  popup.addEventListener("click", handleCloseByClick);
+});
 // функции открытия попапа профиля
 popupOpenProfileButton.addEventListener("click", function () {
+  profileFormValidation.resetValidation();
   nameInput.value = profileName.textContent;
   descriptionInput.value = profileDescription.textContent;
   openPopup(popupProfile);
 });
-// фукция открыти попапа добавления карточки
+
 buttonAddCard.addEventListener("click", () => {
-  const formSaveButton = popupAddCard.querySelector('.form__save-button');
-  formSaveButton.setAttribute('disabled', true);
-  openPopup(popupAddCard)});
-const submitNewCard = (evt) =>{
+  addCardFormValidation.resetValidation();
+  openPopup(popupAddCard);
+});
+
+const submitNewCard = (evt) => {
   evt.preventDefault();
   const data = { name: cardNameInput.value, link: cardLinkInput.value };
-  const newCustomCard = new Card(data, '.template', () => openZoomPopup(event));
+  const newCustomCard = new Card(data, ".template", () => openZoomPopup(event));
   const cardElement = newCustomCard.createCard();
-  cardsContainer.prepend(cardElement);
+  addCard(cardsContainer, cardElement);
   formAddCard.reset();
   closePopup(popupAddCard);
-  formAddCard.setAttribute('disabled', true);
-   }
+  formAddCard.setAttribute("disabled", true);
+};
+
 function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closeByEsc);
-  popup.addEventListener("click", closeByClickOverlay);
 }
 const handleProfileFormSubmit = (evt) => {
   evt.preventDefault();
@@ -70,34 +80,26 @@ const handleProfileFormSubmit = (evt) => {
   closePopup(popupProfile);
 };
 profileForm.addEventListener("submit", handleProfileFormSubmit);
-formAddCard.addEventListener('submit',(evt) => {
+formAddCard.addEventListener("submit", (evt) => {
   submitNewCard(evt);
-  submitCardButton.setAttribute('disabled', true)
+  submitCardButton.setAttribute("disabled", true);
 });
 const closeByEsc = (evt) => {
   if (evt.key === "Escape") {
-    popupList.forEach((popup) => {
-      closePopup(popup);
-    });
+    closePopup(document.querySelector(".popup_opened"));
   }
 };
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
-  document.removeEventListener("keydown", () => closeByEsc(evt));
-  popup.removeEventListener("click", closeByClickOverlay);
+  document.removeEventListener("keydown", closeByEsc);
 }
-document.querySelectorAll(".popup__close-button").forEach((button) => {
-  const buttonsPopup = button.closest(".popup");
-  button.addEventListener("click", () => closePopup(buttonsPopup));
-});
-
- const openZoomPopup=(event)=>{
+const openZoomPopup = (event) => {
   zoomImage.src = event.target.src;
   zoomImage.alt = event.target.alt;
   zoomCaption.textContent = event.target.alt;
   openPopup(popupZoom);
-}
-const profileFormValidation = new FormValidator(validationConfig, profileForm)
-profileFormValidation.enableValidation()
-const addCardFormValidation = new FormValidator(validationConfig, formAddCard)
-addCardFormValidation.enableValidation()
+};
+const profileFormValidation = new FormValidator(validationConfig, profileForm);
+profileFormValidation.enableValidation();
+const addCardFormValidation = new FormValidator(validationConfig, formAddCard);
+addCardFormValidation.enableValidation();
