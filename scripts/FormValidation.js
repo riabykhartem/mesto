@@ -15,8 +15,7 @@ class FormValidator{
   _checkValidity = (input) =>{
     const currentInputErrorContainer = this._formToValidate.querySelector(`#${input.id}-error`);
     if(input.validity.valid){
-      currentInputErrorContainer.textContent = '';
-      input.classList.remove(this.inputErrorClass);
+      this._hideInputError(input);
       this._diableSubmitButton()
     } else{
       currentInputErrorContainer.textContent = input.validationMessage;

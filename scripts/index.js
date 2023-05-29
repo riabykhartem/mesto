@@ -26,11 +26,13 @@ import { initialCards } from "./initialCards.js";
 const addCard = (placeToAdd, thingToAdd) => {
   placeToAdd.prepend(thingToAdd);
 };
-
-initialCards.forEach((element) => {
-  const card = new Card(element, ".template", () => openZoomPopup(event));
+const createCard = (element) => {
+  const card = new Card (element, ".template", () => openZoomPopup(event));
   const cardElement = card.createCard();
-  addCard(cardsContainer, cardElement);
+  return cardElement
+}
+initialCards.forEach((element) => {
+  addCard(cardsContainer, createCard(element))
 });
 
 const handleCloseByClick = (evt) => {
@@ -60,13 +62,10 @@ buttonAddCard.addEventListener("click", () => {
 
 const submitNewCard = (evt) => {
   evt.preventDefault();
-  const data = { name: cardNameInput.value, link: cardLinkInput.value };
-  const newCustomCard = new Card(data, ".template", () => openZoomPopup(event));
-  const cardElement = newCustomCard.createCard();
-  addCard(cardsContainer, cardElement);
+  const data = { name: cardNameInput.value, link: cardLinkInput.value}
+  addCard(cardsContainer, createCard(data))
   formAddCard.reset();
   closePopup(popupAddCard);
-  formAddCard.setAttribute("disabled", true);
 };
 
 function openPopup(popup) {
@@ -82,7 +81,7 @@ const handleProfileFormSubmit = (evt) => {
 profileForm.addEventListener("submit", handleProfileFormSubmit);
 formAddCard.addEventListener("submit", (evt) => {
   submitNewCard(evt);
-  submitCardButton.setAttribute("disabled", true);
+  addCardFormValidation.resetValidation()
 });
 const closeByEsc = (evt) => {
   if (evt.key === "Escape") {
