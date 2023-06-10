@@ -7,15 +7,8 @@ const validationConfig = {
   errorClass: "error",
 };
 //переменные для профиля
-const popupProfile = document.querySelector(".popup_place_profile");
 const popupOpenProfileButton = document.querySelector(".profile__edit-button");
-const nameInput = document.querySelector(".form__input_type_name");
-const descriptionInput = document.querySelector(
-  ".form__input_type_description"
-);
 const profileForm = document.querySelector(".form_place_profile");
-const profileName = document.querySelector(".profile__name");
-const profileDescription = document.querySelector(".profile__description");
 //переменные для попапа добавления карточек
 const cardsContainer = document.querySelector(".elements__list");
 const popupAddCard = document.querySelector(".popup_place_add-card");
@@ -31,15 +24,13 @@ const popupList = Array.from(document.querySelectorAll(".popup"));
 const formAddCard = document.querySelector(".form_place_add-card");
 const submitCardButton = document.querySelector(".form__add-card-button");
 const popups = Array.from(document.querySelectorAll(".popup"));
+
+const popupWithImageSelector = '.popup_place_zoom';
+const cardsContainerSelector = '.elements__list'
 export {
   validationConfig,
-  popupProfile,
   popupOpenProfileButton,
-  nameInput,
-  descriptionInput,
   profileForm,
-  profileName,
-  profileDescription,
   cardsContainer,
   popupAddCard,
   buttonAddCard,
@@ -50,5 +41,6 @@ export {
   zoomCaption,
   popupList,
   formAddCard,
-  submitCardButton,
+  popupWithImageSelector,
+  cardsContainerSelector
 };
