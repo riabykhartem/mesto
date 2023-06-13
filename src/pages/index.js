@@ -1,4 +1,4 @@
-import './pages/index.css';
+import "./index.css";
 import {
   validationConfig,
   popupOpenProfileButton,
@@ -7,40 +7,43 @@ import {
   formAddCard,
   popupWithImageSelector,
   cardsContainerSelector,
-} from "./scripts/utils/constants.js";
-import Card from "./scripts/components/Card.js";
-import FormValidator from "./scripts/components/FormValidation.js";
-import { initialCards } from "./scripts/utils/initialCards.js";
-import PopupWithImage from "./scripts/components/PopupWithImage.js";
-import Section from "./scripts/components/Section.js";
-import UserInfo from "./scripts/components/UserInfo.js";
-import PopupWithForm from "./scripts/components/PopupWithForm.js";
+} from "../scripts/utils/constants.js";
+import Card from "../scripts/components/Card.js";
+import FormValidator from "../scripts/components/FormValidation.js";
+import { initialCards } from "../scripts/utils/initialCards.js";
+import PopupWithImage from "../scripts/components/PopupWithImage.js";
+import Section from "../scripts/components/Section.js";
+import UserInfo from "../scripts/components/UserInfo.js";
+import PopupWithForm from "../scripts/components/PopupWithForm.js";
 
 const popupWithImage = new PopupWithImage(popupWithImageSelector);
+popupWithImage.setEventListeners();
+
+const createCard = (element) => {
+  const card = new Card(element, ".template", () =>
+    popupWithImage.open({ src: element.link, name: element.name })
+  );
+  const cardElement = card.createCard();
+  return cardElement;
+}
 
 const section = new Section(
   {
     items: initialCards,
-    renderer: (element) => {
-      const card = new Card(element, ".template", () =>
-        popupWithImage.open({ src: element.link, name: element.name })
-      );
-      popupWithImage.setEventListeners();
-      const cardElement = card.createCard();
-      return cardElement;
-    },
+    renderer: createCard
   },
   cardsContainerSelector
 );
 section.addInitialCards();
 
 const userInfo = new UserInfo(".profile__name", ".profile__description");
+
 //экзэмпляр  профиля
-const popupProfile = new PopupWithForm(".popup_place_profile", (evt) => {
-  evt.preventDefault();
-  userInfo.setUserInfo(popupProfile.getInputValues());
+const submitFunction = (formData) => {
+  userInfo.setUserInfo(formData);
   popupProfile.close();
-});
+}
+const popupProfile = new PopupWithForm(".popup_place_profile", submitFunction);
 popupProfile.setEventListeners();
 
 popupOpenProfileButton.addEventListener("click", () => {
@@ -50,13 +53,12 @@ popupOpenProfileButton.addEventListener("click", () => {
 });
 
 //экземпляр добавления карточки
-const popupAddCard = new PopupWithForm(".popup_place_add-card", (evt) => {
-  evt.preventDefault();
-  section.addItem(section.renderer(popupAddCard.getInputValues()));
+const popupAddCard = new PopupWithForm(".popup_place_add-card", (formData) => {
+  section.addItem(section.renderer(formData));
   popupAddCard.close();
 });
-
 popupAddCard.setEventListeners();
+
 buttonAddCard.addEventListener("click", () => {
   addCardFormValidation.resetValidation();
   popupAddCard.open();

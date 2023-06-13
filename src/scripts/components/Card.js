@@ -1,12 +1,12 @@
 export default class Card {
   constructor(cardData, templateSelector, zoomImage) {
-    (this.cardData = cardData),
-      (this.templateSelector = templateSelector),
-      (this._link = this.cardData.link),
-      (this._name = this.cardData.name),
-      (this._zoomImage = zoomImage),
-      (this._element = this._getTemplate()),
-      (this._cardImage = this._element.querySelector(".element__photo"));
+    this.cardData = cardData,
+    this.templateSelector = templateSelector,
+    this._link = this.cardData.link,
+    this._name = this.cardData.name,
+    this._zoomImage = zoomImage,
+    this._element = this._getTemplate(),
+    this._cardImage = this._element.querySelector(".element__photo");
   }
 
   _setEventListeners = () => {
