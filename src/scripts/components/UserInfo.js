@@ -1,12 +1,12 @@
 export default class UserInfo {
-  constructor(profileNameSelector, profileDescriptionSelector) {
+  constructor(profileNameSelector, profileDescriptionSelector, avatarSelector) {
     this._profileName = document.querySelector(profileNameSelector),
     this._profileDescription = document.querySelector(
         profileDescriptionSelector
-      );
+      ),
+    this._avatarImage = document.querySelector(avatarSelector)
   }
-  //"Содержит публичный метод getUserInfo, который возвращает объект с данными пользователя.
-  //Этот метод пригодится когда данные пользователя нужно будет подставить в форму при открытии."
+
   getUserInfo() {
     return {
       name: this._profileName.textContent,
@@ -14,9 +14,9 @@ export default class UserInfo {
     };
   }
 
-  //функция для профиля, кладёт имя и описание в инпуты при открытии попапа
-  setUserInfo(data) {
-    this._profileName.textContent = data.name,
-    this._profileDescription.textContent = data.description;
+  setUserInfo({avatar, name, description}) {
+    this._avatarImage.src = avatar,
+    this._profileName.textContent = name,
+    this._profileDescription.textContent = description;
   }
 }

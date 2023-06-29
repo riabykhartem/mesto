@@ -9,6 +9,9 @@ const validationConfig = {
 //переменные для профиля
 const popupOpenProfileButton = document.querySelector(".profile__edit-button");
 const profileForm = document.querySelector(".form_place_profile");
+const avatarPopupSelector = '.popup_place_avatar';
+const avatarButton = document.querySelector('.profile__avatar-button');
+
 //переменные для попапа добавления карточек
 const cardsContainer = document.querySelector(".elements__list");
 const popupAddCard = document.querySelector(".popup_place_add-card");
@@ -24,7 +27,8 @@ const popupList = Array.from(document.querySelectorAll(".popup"));
 const formAddCard = document.querySelector(".form_place_add-card");
 const submitCardButton = document.querySelector(".form__add-card-button");
 const popups = Array.from(document.querySelectorAll(".popup"));
-
+const avatarForm = document.querySelector('.form_place_avatar');
+const avatarImage = document.querySelector('.profile__avatar');
 const popupWithImageSelector = '.popup_place_zoom';
 const cardsContainerSelector = '.elements__list'
 export {
@@ -42,5 +46,9 @@ export {
   popupList,
   formAddCard,
   popupWithImageSelector,
-  cardsContainerSelector
+  cardsContainerSelector,
+  avatarForm,
+  avatarPopupSelector,
+  avatarButton,
+  avatarImage
 };

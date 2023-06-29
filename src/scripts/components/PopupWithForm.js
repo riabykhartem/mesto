@@ -1,4 +1,4 @@
-import { Popup } from "./Popup.js";
+import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
   constructor(popupSelector, submitFunction) {
@@ -8,7 +8,6 @@ export default class PopupWithForm extends Popup {
     this._inputList = this._form.querySelectorAll(".form__input");
   }
 
-  //"Содержит приватный метод _getInputValues, который собирает данные всех полей формы."
   _getInputValues = () => {
     this._values = {};
     this._inputList.forEach((element) => {
@@ -22,8 +21,7 @@ export default class PopupWithForm extends Popup {
       input.value = data[input.name];
     });
   }
-  //"Перезаписывает родительский метод setEventListeners. Метод setEventListeners класса PopupWithForm должен
-  // не только добавлять обработчик клика иконке закрытия, но и добавлять обработчик сабмита формы."
+
   setEventListeners= () => {
     super.setEventListeners(),
     this._form.addEventListener("submit", (evt) => {
@@ -34,5 +32,4 @@ export default class PopupWithForm extends Popup {
   close() {
     super.close(), this._form.reset();
   }
-  su
 }

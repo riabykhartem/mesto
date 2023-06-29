@@ -1,15 +1,19 @@
-export class Popup {
+export default class Popup {
   constructor(popupSelector) {
     (this._popup = document.querySelector(popupSelector)),
       (this.popupCloseButton = this._popup.querySelector(
         ".popup__close-button"
       ));
+    this._form = this._popup.querySelector(".form");
+    this.sumbitButton = this._popup.querySelector('.form__save-button')
   }
+
   _handleEscClose = (evt) => {
     if (evt.key === "Escape") {
       this.close();
     }
   };
+
   open() {
     this._popup.classList.add("popup_opened");
     document.addEventListener("keydown", this._handleEscClose);
@@ -19,6 +23,7 @@ export class Popup {
     this._popup.classList.remove("popup_opened");
     document.removeEventListener("keydown", this._handleEscClose);
   }
+
   _handleCloseByClick = (evt) => {
     if (
       evt.target === evt.currentTarget ||
@@ -27,7 +32,13 @@ export class Popup {
       this.close();
     }
   };
+
   setEventListeners() {
     this._popup.addEventListener("click", this._handleCloseByClick);
   }
+
+  setLoadingText(){
+    this.sumbitButton.textContent = "Сохранение..."
+  }
+
 }
