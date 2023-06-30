@@ -26,6 +26,7 @@ const api = new Api({
     authorization: "4c12c1a1-7aa0-4e54-ad87-1d23caeb5ea9",
     "Content-Type": "application/json",
   },
+  url: 'https://mesto.nomoreparties.co/v1/cohort-69'
 });
 
 const popupWithImage = new PopupWithImage(popupWithImageSelector);
@@ -38,8 +39,8 @@ const createCard = (element) => {
     () => popupWithImage.open({ src: element.link, name: element.name }),
     (element) =>
       popupWithSubmit.open({ thisCard: card, cardId: element.cardId }),
-    (buttonLike, cardId) => {
-      if (buttonLike.classList.contains("element__like-button_active")) {
+    (cardId) => {
+      if (card._isLiked()) {
         api
           .deleteLike(cardId)
           .then((res) => {
@@ -69,20 +70,22 @@ const userInfo = new UserInfo(
 );
 
 const popupProfile = new PopupWithForm(".popup_place_profile", (formData) => {
+  popupProfile.setLoadingText()
   api
     .editProfile(formData)
-    .then((res) =>
+    .then((res) =>{
       userInfo.setUserInfo({
         avatar: res.avatar,
         name: res.name,
-        description: res.about,
-      })
-    )
+        description: res.about
+      }),
+      popupProfile.close()
+    })
     .catch((err) => {
       `ошибка при редактировании профиля =>${console.error(err)}`;
     })
-    .finally(popupProfile.setLoadingText());
-  popupProfile.close();
+    .finally(popupProfile.setDefualtText());
+
 });
 popupProfile.setEventListeners();
 
@@ -96,9 +99,9 @@ popupOpenProfileButton.addEventListener("click", () => {
 const popupAddCard = new PopupWithForm(
   ".popup_place_add-card",
   (inputValues) => {
-    Promise.all([api.getInfo(), api.addCard(inputValues)])
-      .then(([dataUser, dataCard]) => {
-        (dataCard.myId = dataUser._id),
+    api.addCard(inputValues)
+      .then((dataCard) => {
+        (dataCard.myId = dataCard.owner._id),
           section.addItem(createCard(dataCard)),
           popupAddCard.close();
       })
@@ -124,14 +127,18 @@ avatarFormValidation.enableValidation();
 
 //экземпляр автара
 const popupAvatar = new PopupWithForm(avatarPopupSelector, (formData) => {
+  popupAvatar.setLoadingText()
   api
     .setAvatar(formData)
-    .then((res) => res.json())
-    .then((res) => (avatarImage.src = res.avatar))
+    .then((res) => {
+      (avatarImage.src = res.avatar),
+      popupAvatar.close()})
     .catch((err) => console.error(`ошибка при обновлении аватара ${err}`))
-    .finally(popupProfile.setLoadingText());
-  popupAvatar.close();
-});
+    .finally(popupAvatar.setDefualtText())
+
+},
+
+);
 
 popupAvatar.setEventListeners();
 
@@ -144,13 +151,14 @@ avatarButton.addEventListener("click", () => {
 const popupWithSubmit = new PopupWithSubmit(
   ".popup_place_delete-card",
   ({ card, cardId }) => {
+    popupWithSubmit.setLoadingText(),
     api
       .deleteCard(cardId)
-      .then((res) => {
+      .then(() => {
         card.removeCard(), popupWithSubmit.close();
       })
       .catch((err) => console.error(err))
-      .finally(popupProfile.setLoadingText());
+      .finally(popupWithSubmit.setDefualtText());
   }
 );
 

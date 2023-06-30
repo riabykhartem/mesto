@@ -3,7 +3,9 @@ import Popup from "./Popup";
 export default class PopupWithSubmit extends Popup{
   constructor(popupSelector, submitFunciton){
     super(popupSelector);
-    this._submitFunction = submitFunciton;
+    this._submitFunction = submitFunciton,
+    this._submitButton = this._popup.querySelector('.form__save-button'),
+    this._defualtSubmitText = this._submitButton.textContent
   }
 
   open = ({thisCard, cardId})=> {
@@ -21,5 +23,11 @@ export default class PopupWithSubmit extends Popup{
     })
   }
 
+  setDefualtText(){
+    this._submitButton.textContent = this._defualtSubmitText
+  }
 
+  setLoadingText(){
+    this._submitButton.textContent = `${this._defualtSubmitText}...`
+  }
 }

@@ -1,6 +1,5 @@
 export default class Card {
   constructor(cardData, templateSelector, zoomImage, openPopupWithSubmit, likeHandler) {
-    // console.log(cardData);
     this.cardData = cardData,
     this._myId = this.cardData.myId,
     this._ownerId = this.cardData.owner._id,
@@ -51,10 +50,17 @@ export default class Card {
     return this._element;
   };
 
-
+  _isLiked() {
+    if(this._buttonLike.classList.contains("element__like-button_active")){
+      return true
+    }
+    else{
+      return false
+    }
+  }
 
   _handleLike() {
-    this._likeHandler(this._buttonLike, this._cardId);
+    this._likeHandler(this._cardId);
   }
 
   _hideDeleteButton = () =>{

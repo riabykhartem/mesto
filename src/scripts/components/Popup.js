@@ -5,7 +5,6 @@ export default class Popup {
         ".popup__close-button"
       ));
     this._form = this._popup.querySelector(".form");
-    this.sumbitButton = this._popup.querySelector('.form__save-button')
   }
 
   _handleEscClose = (evt) => {
@@ -35,10 +34,6 @@ export default class Popup {
 
   setEventListeners() {
     this._popup.addEventListener("click", this._handleCloseByClick);
-  }
-
-  setLoadingText(){
-    this.sumbitButton.textContent = "Сохранение..."
   }
 
 }
